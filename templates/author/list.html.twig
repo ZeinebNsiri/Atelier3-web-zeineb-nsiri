@@ -1,0 +1,35 @@
+{% if authors is empty %}
+    no author found
+{% endif %}
+<table>
+        <tr>
+        <th>Id</th>
+        <th>picture</th>
+        <th>username</th>
+        <th>email</th>
+        <th>nbOfBooks</th>
+        <th>links</th>
+        </tr>
+    
+    {% for i in authors %}
+
+    <tr>
+    <td>{{i.id}}</td>
+    <td> <img src={{i.picture}}  style="width: 100px; height: auto;"></td>
+    <td>{{i.username | upper}}</td>
+    <td>{{i.email}}</td>
+    <td>{{i.nb_books}}</td>
+    <td><a href='/AuthorDetails/{{i.id}}'>details</a><td>
+    </tr>
+
+    {% endfor %}
+    </table>
+
+
+    <h1>Total of author  :  {{ authors|length }}</h1>
+    {% set somme = 0 %}
+    {% for i in authors %}
+        {% set somme = somme + i.nb_books %}
+        
+    {% endfor %}
+    <h1>Total of books  :  {{ somme }}</h1>
